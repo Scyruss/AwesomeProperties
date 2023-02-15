@@ -30,24 +30,38 @@ namespace WpfApp1
 
         public PropertiesPanel(object data)
         {
+            if (data == null) return;
+
             InitializeComponent();
+
+            DataContext = this;
+
+            InitProperties(data);
+        }
+
+        private void InitProperties(object data)
+        {
 
             var objectType = data.GetType();
 
-            DataContext = this;
+            if (objectType == null) return;
 
             foreach (var item in objectType.GetProperties())
             {
                 PropertyListField listProperty = null;
                 PropertyField property = null;
 
-                if (!GetFieldType(item, out property) && !GetListFieldType(item, out  listProperty)) continue;
+                if (item == null) continue;
+                if (!GetFieldType(item, out property) && !GetListFieldType(item, out listProperty)) continue;
 
                 if (property != null)
                 {
                     if (property.Type == PropertyType.None) continue;
 
                     PropertyElement e = new PropertyElement(objectType, item, data, property);
+
+                    if (e == null || PropertiesList == null) continue;
+
                     PropertiesList.Children.Add(e);
                 }
 
@@ -57,23 +71,28 @@ namespace WpfApp1
                     {
                         foreach (var indexData in item.GetValue(data) as IList)
                         {
+                            if (indexData == null) continue;
+
                             var propertyTargetType = indexData.GetType();
+
+                            if (propertyTargetType == null) continue;
 
                             var nameInfo = propertyTargetType.GetProperty(listProperty.ChildrenName);
                             var valueInfo = propertyTargetType.GetProperty(listProperty.ChildrenValueName);
+                            var typeInfo = propertyTargetType.GetProperty(listProperty.ChildrenControlTypeName);
 
-                            if (listProperty.Type == PropertyType.None) continue;
+                            if (nameInfo == null || valueInfo == null || typeInfo == null || !typeInfo.PropertyType.Name.Contains(nameof(PropertyType))) continue;
 
-                            PropertyElement e = new PropertyElement(objectType, nameInfo, valueInfo, indexData,listProperty,data);
+                            listProperty.Type = (PropertyType)typeInfo.GetValue(indexData);
+
+                            PropertyElement e = new PropertyElement(objectType, nameInfo, valueInfo, indexData, listProperty, data);
+                            
+                            if (e == null || PropertiesList == null) continue;
+
                             PropertiesList.Children.Add(e);
                         }
                     }
-                    else
-                    {
-                    }
                 }
-
-
             }
         }
 
@@ -83,8 +102,10 @@ namespace WpfApp1
 
             foreach (var attribute in field.CustomAttributes)
             {
-                if (attribute.AttributeType.Name.Contains(nameof(PropertyField)))
+                if (attribute != null && attribute.AttributeType.Name.Contains(nameof(PropertyField)))
                 {
+                    if (attribute.ConstructorArguments.Count != 4) continue;
+
                     property = new PropertyField((PropertyType)attribute.ConstructorArguments[0].Value,
                                                 (string)attribute.ConstructorArguments[1].Value,
                                                 (bool)attribute.ConstructorArguments[2].Value,
@@ -103,11 +124,14 @@ namespace WpfApp1
 
             foreach (var attribute in field.CustomAttributes)
             {
-                if (attribute.AttributeType.Name.Contains(nameof(PropertyListField)))
+                if (attribute != null && attribute.AttributeType.Name.Contains(nameof(PropertyListField)))
                 {
+                    if (attribute.ConstructorArguments.Count != 4) continue;
+
                     property = new PropertyListField((PropertyType)attribute.ConstructorArguments[0].Value,
                                                 (string)attribute.ConstructorArguments[1].Value,
-                                                (string)attribute.ConstructorArguments[2].Value);
+                                                (string)attribute.ConstructorArguments[2].Value,
+                                                (string)attribute.ConstructorArguments[3].Value);
 
                     return true;
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AwesomeProperties.Attribute;
+using System;
 using System.ComponentModel;
 using System.Reflection;
 
@@ -14,6 +15,8 @@ namespace AwesomeProperties.Page.ViewModel
         public PropertyInfo valueInfo;
         public PropertyInfo nameInfo;
         public object data;
+
+        public PropertyField property;
 
         public void NotifyPropertyChanged(string name)
         {
@@ -37,9 +40,9 @@ namespace AwesomeProperties.Page.ViewModel
             set
             {
                 var method = baseType.GetMethod("OnPropertyChanged");
-                //var convertedData = PropertyDataConverter.CheckData(this.valueInfo, property, value);
+                var convertedData = PropertyDataConverter.CheckData(this.valueInfo, property, value);
 
-                valueInfo.SetValue(data, value);
+                valueInfo.SetValue(data, convertedData);
 
                 if (method != null)
                     method.Invoke(baseTypeData, new object[] { valueInfo.Name, value });

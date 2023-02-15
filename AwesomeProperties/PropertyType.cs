@@ -11,6 +11,7 @@ namespace AwesomeProperties
         None,
         Text,
         Int,
-        CheckBox
+        CheckBox,
+        Dropdown
     }
 }

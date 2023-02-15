@@ -19,7 +19,6 @@ namespace WpfApp1
     {
         public PropertyElement(Type baseType, PropertyInfo nameInfo, PropertyInfo valueInfo, Object data, PropertyListField property, Object baseData)
         {
-            InitializeComponent();
 
             var view = new PropertyListElementViewModel();
             view.baseType = baseType;
@@ -27,6 +26,8 @@ namespace WpfApp1
             view.valueInfo = valueInfo;
             view.data = data;
             view.baseTypeData = baseData;
+            view.property = new PropertyField(property.Type,"");
+
             InitializeComponent();
 
             DataContext = view;

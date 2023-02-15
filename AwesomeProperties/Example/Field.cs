@@ -13,6 +13,7 @@ namespace AwesomeProperties.Example
             this.value = value;
         }
 
+        public PropertyType type { get; set; }
         public string value { get; set; }
         public string name { get; set; }
     }
