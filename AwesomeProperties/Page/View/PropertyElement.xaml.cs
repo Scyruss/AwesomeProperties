@@ -26,7 +26,8 @@ namespace WpfApp1
             view.valueInfo = valueInfo;
             view.data = data;
             view.baseTypeData = baseData;
-            view.property = new PropertyField(property.Type,"");
+            view.property = new PropertyField(property.Type,"",order: property.Order);
+            Tag = property.Order;
 
             InitializeComponent();
 
@@ -34,6 +35,7 @@ namespace WpfApp1
 
             if (property.Type == PropertyType.Text)
             {
+
                 TextBox textBlock = new TextBox();
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
@@ -100,6 +102,8 @@ namespace WpfApp1
             view.data = data;
             view.displayName = property.DisplayName;
             view.property = property;
+            Tag = property.Order;
+
             InitializeComponent();
 
             DataContext = view;

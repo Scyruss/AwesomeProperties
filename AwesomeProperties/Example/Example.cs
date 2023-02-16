@@ -10,7 +10,7 @@ namespace AwesomeProperties.Example
         public List<Field> Name { get; set; }
 
 
-        [PropertyField(PropertyType.Int, "Count", true, "value")]
+        [PropertyField(PropertyType.Int, "Count",  true, "value")]
         public Field Count { get; set; }
 
 

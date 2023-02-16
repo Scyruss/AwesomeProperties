@@ -14,13 +14,15 @@ namespace AwesomeProperties.Attribute
         public string DisplayName { get; }
         public bool IsChildren { get; }
         public string ChildrenName { get; }
+        public int Order { get; }
 
-        public PropertyField(PropertyType type, string displayName, bool isChildren = false, string childrenName = "")
+        public PropertyField(PropertyType type, string displayName, bool isChildren = false, string childrenName = "", int order = -1)
         {
             Type = type;
             DisplayName = displayName;
             IsChildren = isChildren;
             ChildrenName = childrenName;
+            Order = order;
         }
     }
 }

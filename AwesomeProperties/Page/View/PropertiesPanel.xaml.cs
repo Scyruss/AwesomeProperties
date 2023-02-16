@@ -28,6 +28,10 @@ namespace WpfApp1
         public object data;
         public Type type;
 
+        /// <summary>
+        /// Generate and show mark properties of a class
+        /// </summary>
+        /// <param name="data">Instance of a class to show</param>
         public PropertiesPanel(object data)
         {
             if (data == null) return;
@@ -41,6 +45,8 @@ namespace WpfApp1
 
         private void InitProperties(object data)
         {
+            //Create a list of Element for store fields (he will help for reorder fields)
+            List<FrameworkElement> fields = new List<FrameworkElement>();
 
             var objectType = data.GetType();
 
@@ -62,7 +68,7 @@ namespace WpfApp1
 
                     if (e == null || PropertiesList == null) continue;
 
-                    PropertiesList.Children.Add(e);
+                    fields.Add(e);
                 }
 
                 if (listProperty != null)
@@ -89,11 +95,18 @@ namespace WpfApp1
                             
                             if (e == null || PropertiesList == null) continue;
 
-                            PropertiesList.Children.Add(e);
+                            fields.Add(e);
                         }
                     }
                 }
             }
+
+            var reordered = fields.OrderBy(o => ((int)(o.Tag) == -1)?9999: (int)(o.Tag));
+
+            foreach (var i in reordered)
+                PropertiesList.Children.Add(i);
+
+
         }
 
         private bool GetFieldType(PropertyInfo field, out PropertyField property)
@@ -104,12 +117,13 @@ namespace WpfApp1
             {
                 if (attribute != null && attribute.AttributeType.Name.Contains(nameof(PropertyField)))
                 {
-                    if (attribute.ConstructorArguments.Count != 4) continue;
+                    if (attribute.ConstructorArguments.Count != 5) continue;
 
                     property = new PropertyField((PropertyType)attribute.ConstructorArguments[0].Value,
                                                 (string)attribute.ConstructorArguments[1].Value,
                                                 (bool)attribute.ConstructorArguments[2].Value,
-                                                (string)attribute.ConstructorArguments[3].Value);
+                                                (string)attribute.ConstructorArguments[3].Value,
+                                                (int)attribute.ConstructorArguments[4].Value);
 
                     return true;
                 }
@@ -126,12 +140,13 @@ namespace WpfApp1
             {
                 if (attribute != null && attribute.AttributeType.Name.Contains(nameof(PropertyListField)))
                 {
-                    if (attribute.ConstructorArguments.Count != 4) continue;
+                    if (attribute.ConstructorArguments.Count != 5) continue;
 
                     property = new PropertyListField((PropertyType)attribute.ConstructorArguments[0].Value,
                                                 (string)attribute.ConstructorArguments[1].Value,
                                                 (string)attribute.ConstructorArguments[2].Value,
-                                                (string)attribute.ConstructorArguments[3].Value);
+                                                (string)attribute.ConstructorArguments[3].Value,
+                                                (int)attribute.ConstructorArguments[4].Value);
 
                     return true;
                 }
