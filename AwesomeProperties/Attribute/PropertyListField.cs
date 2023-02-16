@@ -17,9 +17,15 @@ namespace AwesomeProperties.Attribute
         public int Order { get; }
         public bool HasOrder { get => (Order == -1);  }
 
-        public PropertyListField(PropertyType type, string childrenName = "", string childrenValueName = "", string childrenControlTypeName = "", int order = -1)
+        /// <summary>
+        /// Specify the property should be draw in the properties panel
+        /// </summary>
+        /// <param name="childrenName">Name of the property who store the property header name</param>
+        /// <param name="childrenValueName">Name of the property who store the property value</param>
+        /// <param name="childrenControlTypeName">Name of the property who store the property type</param>
+        /// <param name="order">Specify the property order (By default he is order by declaration)</param>
+        public PropertyListField(string childrenName = "", string childrenValueName = "", string childrenControlTypeName = "", int order = -1)
         {
-            Type = type;
             ChildrenName = childrenName;
             ChildrenValueName = childrenValueName;
             ChildrenControlTypeName = childrenControlTypeName;

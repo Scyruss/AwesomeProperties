@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AwesomeProperties
 {
+    /// <summary>
+    /// Specify the field type
+    /// </summary>
     public enum PropertyType
     {
         None,

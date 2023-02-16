@@ -8,6 +8,13 @@ namespace AwesomeProperties.Interface
 {
     public interface IPropertyFieldValueChanged
     {
-        void OnPropertyChanged(string propertyName, object value);
+
+        /// <summary>
+        /// Get notified whe property value changed
+        /// </summary>
+        /// <param name="propertyName">Display name of the property</param>
+        /// <param name="baseObject">Root element (object bind in PropertiesPanel control)</param>
+        /// <param name="targetProperty">Current modify element</param>
+        void OnPropertyChanged(string propertyName, object baseObject, object targetProperty);
     }
 }

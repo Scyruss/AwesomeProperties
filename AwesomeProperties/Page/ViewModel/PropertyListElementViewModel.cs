@@ -5,23 +5,10 @@ using System.Reflection;
 
 namespace AwesomeProperties.Page.ViewModel
 {
-    internal class PropertyListElementViewModel : INotifyPropertyChanged
+    internal class PropertyListElementViewModel : PropertyElementBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public Type baseType;
-        public object baseTypeData;
-
         public PropertyInfo valueInfo;
         public PropertyInfo nameInfo;
-        public object data;
-
-        public PropertyField property;
-
-        public void NotifyPropertyChanged(string name)
-        {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
-        }
 
         public string displayName
         {
@@ -39,14 +26,11 @@ namespace AwesomeProperties.Page.ViewModel
             }
             set
             {
-                var method = baseType.GetMethod("OnPropertyChanged");
-                var convertedData = PropertyDataConverter.CheckData(this.valueInfo, property, value);
+                var convertedData = Convert.ChangeType(value, valueInfo.PropertyType);
 
                 valueInfo.SetValue(data, convertedData);
 
-                if (method != null)
-                    method.Invoke(baseTypeData, new object[] { valueInfo.Name, value });
-
+                NotifyTargetPropertyChanged(displayName,data);
                 NotifyPropertyChanged(nameof(Test));
             }
         }

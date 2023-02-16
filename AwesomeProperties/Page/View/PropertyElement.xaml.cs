@@ -92,6 +92,25 @@ namespace WpfApp1
                 BindingOperations.SetBinding(ckeckBox, CheckBox.IsCheckedProperty, binding);
                 Property.Children.Add(ckeckBox);
             }
+
+            else if (property.Type == PropertyType.Dropdown)
+            {
+                ComboBox comboBox = new ComboBox();
+                Binding binding = new Binding("Test");
+                binding.Source = DataContext;
+                binding.Mode = BindingMode.TwoWay;
+                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+
+                comboBox.Margin = new Thickness(0, 0, 0, 5);
+                comboBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+                comboBox.VerticalAlignment = VerticalAlignment.Center;
+                comboBox.ItemsSource = ((DropDown)(data)).Options;
+
+                Grid.SetColumn(comboBox, 1);
+
+                BindingOperations.SetBinding(comboBox, ComboBox.SelectedItemProperty, binding);
+                Property.Children.Add(comboBox);
+            }
         }
 
         public PropertyElement(Type baseType, PropertyInfo target, Object data, PropertyField property)
@@ -100,6 +119,7 @@ namespace WpfApp1
             view.baseType = baseType;
             view.target = target;
             view.data = data;
+            view.baseTypeData = data;
             view.displayName = property.DisplayName;
             view.property = property;
             Tag = property.Order;
@@ -165,6 +185,25 @@ namespace WpfApp1
 
                 BindingOperations.SetBinding(ckeckBox, CheckBox.IsCheckedProperty, binding);
                 Property.Children.Add(ckeckBox);
+            }
+
+            else if (property.Type == PropertyType.Dropdown)
+            {
+                ComboBox comboBox = new ComboBox();
+                Binding binding = new Binding("Test");
+                binding.Source = DataContext;
+                binding.Mode = BindingMode.TwoWay;
+                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+
+                comboBox.Margin = new Thickness(0, 0, 0, 5);
+                comboBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+                comboBox.VerticalAlignment = VerticalAlignment.Center;
+                comboBox.ItemsSource = ((DropDown)target.GetValue(data)).Options;
+
+                Grid.SetColumn(comboBox, 1);
+
+                BindingOperations.SetBinding(comboBox, ComboBox.SelectedItemProperty, binding);
+                Property.Children.Add(comboBox);
             }
 
         }
