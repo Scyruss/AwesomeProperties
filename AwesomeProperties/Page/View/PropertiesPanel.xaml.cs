@@ -20,9 +20,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Logique d'interaction pour UserControl1.xaml
-    /// </summary>
     public partial class PropertiesPanel : UserControl
     {
         public object data;

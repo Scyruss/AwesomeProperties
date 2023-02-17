@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AwesomeProperties.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 namespace AwesomeProperties
 {
     /// <summary>
-    /// Base field type
+    /// Base field class
     /// </summary>
-    public class Field
+    public class Field : IFieldUtils
     {
         public Field(PropertyType type, string name, string value)
         {
@@ -17,13 +18,24 @@ namespace AwesomeProperties
             this.value = value;
             this.name = name;
         }
+     
         public Field(string value)
         {
             this.value = value;
         }
 
+        public Field()
+        {
+
+        }
+
         public PropertyType type { get; set; }
         public string value { get; set; }
         public string name { get; set; }
+
+        public Field Copy()
+        {
+            return new Field(type,name,value);
+        }
     }
 }

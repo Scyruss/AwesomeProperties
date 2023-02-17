@@ -11,10 +11,26 @@ namespace AwesomeProperties
     /// </summary>
     public class DropDown : Field
     {
-        public string[] Options { get; }
         public DropDown(PropertyType type, string name ,string value, string[] options) : base(type,name,value)
         {
             Options = options;
         }
+
+        public DropDown(string[] options)
+        {
+            Options = options;
+        }
+
+        public DropDown()
+        {
+
+        }
+
+        public new Field Copy()
+        {
+            return new DropDown(type, name, value, Options);
+        }
+
+        public string[] Options { get; }
     }
 }
