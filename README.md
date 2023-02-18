@@ -6,6 +6,10 @@ Install on nuget market place or at this link: https://www.nuget.org/packages/Aw
 
 ## Sample
 
+Example with a listview bind with a custom class ElectricCar and ThermalCar inherit from a class Car
+![alt text](https://raw.githubusercontent.com/Scyruss/AwesomeProperties/main/Tesla.png)
+![alt text](https://raw.githubusercontent.com/Scyruss/AwesomeProperties/main/Opel.png)
+
 ### Basic Usage
 
 To show on the properties window you should mark with PropertyField attribute
