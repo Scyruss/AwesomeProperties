@@ -32,6 +32,8 @@ namespace AwesomeProperties.Page.ViewModel
 
                 NotifyTargetPropertyChanged(displayName,data);
                 NotifyPropertyChanged(nameof(Test));
+
+                
             }
         }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp1;
 
 namespace AwesomeProperties.Page.ViewModel
 {
@@ -18,6 +19,8 @@ namespace AwesomeProperties.Page.ViewModel
         public PropertyField property;
         public PropertyInfo target;
 
+        public PropertiesPanel Panel { get; set; }
+
         public void NotifyPropertyChanged(string name)
         {
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
@@ -29,6 +32,8 @@ namespace AwesomeProperties.Page.ViewModel
 
             if (method != null)
                 method.Invoke(baseTypeData, new object[] { elementName, baseTypeData, data });
+
+            Panel.OnPropertieChanged.Invoke();
         }
     }
 }

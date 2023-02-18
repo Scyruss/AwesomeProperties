@@ -17,10 +17,12 @@ namespace WpfApp1
     /// </summary>
     public partial class PropertyElement : UserControl
     {
-        public PropertyElement(Type baseType, PropertyInfo nameInfo, PropertyInfo valueInfo, Object data, PropertyListField property, Object baseData)
+
+        public PropertyElement(PropertiesPanel panel,Type baseType, PropertyInfo nameInfo, PropertyInfo valueInfo, Object data, PropertyListField property, Object baseData)
         {
 
             var view = new PropertyListElementViewModel();
+            view.Panel = panel;
             view.baseType = baseType;
             view.nameInfo = nameInfo;
             view.valueInfo = valueInfo;
@@ -113,9 +115,10 @@ namespace WpfApp1
             }
         }
 
-        public PropertyElement(Type baseType, PropertyInfo target, Object data, PropertyField property)
+        public PropertyElement(PropertiesPanel panel,Type baseType, PropertyInfo target, Object data, PropertyField property)
         {
             var view = new PropertyElementViewModel();
+            view.Panel = panel;
             view.baseType = baseType;
             view.target = target;
             view.data = data;

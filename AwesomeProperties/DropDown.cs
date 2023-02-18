@@ -26,11 +26,11 @@ namespace AwesomeProperties
 
         }
 
+        public string[] Options { get; }
+
         public new Field Copy()
         {
             return new DropDown(type, name, value, Options);
         }
-
-        public string[] Options { get; }
     }
 }

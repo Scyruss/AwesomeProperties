@@ -22,9 +22,8 @@ namespace WpfApp1
 {
     public partial class PropertiesPanel : UserControl
     {
-        public object data;
-        public Type type;
-
+        public delegate void OnPropertieChangedEvent();
+        public OnPropertieChangedEvent OnPropertieChanged;
         /// <summary>
         /// Generate and show mark properties of a class
         /// </summary>
@@ -61,7 +60,7 @@ namespace WpfApp1
                 {
                     if (property.Type == PropertyType.None) continue;
 
-                    PropertyElement e = new PropertyElement(objectType, item, data, property);
+                    PropertyElement e = new PropertyElement(this,objectType, item, data, property);
 
                     if (e == null || PropertiesList == null) continue;
 
@@ -88,7 +87,7 @@ namespace WpfApp1
 
                             listProperty.Type = (PropertyType)typeInfo.GetValue(indexData);
 
-                            PropertyElement e = new PropertyElement(objectType, nameInfo, valueInfo, indexData, listProperty, data);
+                            PropertyElement e = new PropertyElement(this,objectType, nameInfo, valueInfo, indexData, listProperty, data);
                             
                             if (e == null || PropertiesList == null) continue;
 
