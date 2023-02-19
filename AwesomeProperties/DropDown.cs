@@ -26,7 +26,7 @@ namespace AwesomeProperties
 
         }
 
-        public string[] Options { get; }
+        public string[] Options { get; set; }
 
         public new Field Copy()
         {
