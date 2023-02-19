@@ -11,6 +11,10 @@ Example with a listview bind with a custom class ElectricCar and ThermalCar inhe
 ![alt text](https://raw.githubusercontent.com/Scyruss/AwesomeProperties/main/Tesla.png)
 ![alt text](https://raw.githubusercontent.com/Scyruss/AwesomeProperties/main/Opel.png)
 
+Awesome properties also support graphics library like WPF-UI:
+
+![alt text](https://raw.githubusercontent.com/Scyruss/AwesomeProperties/main/WPFUI.png)
+
 ### Basic Usage
 
 To show on the properties window you should mark with PropertyField attribute
