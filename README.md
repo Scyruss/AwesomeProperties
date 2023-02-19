@@ -63,7 +63,7 @@ Create new instance of your custom class
     }
 ```
 
-Tho show the properties panel:
+To show the properties panel:
 ```CS
 
     public void ShowProperties(){
