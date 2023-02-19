@@ -22,6 +22,9 @@ namespace Example
         [PropertyField(PropertyType.Text,"Power (HP)", order: 3)]
         public int HorsePower { get; set; }
 
+        [PropertyField(PropertyType.CheckBox,"Is hybrid", order: 4)]
+        public bool IsHybrid { get; set; }
+
         public void OnPropertyChanged(string propertyName, object baseObject, object targetProperty)
         {
 
