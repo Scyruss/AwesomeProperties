@@ -5,10 +5,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-
+using System.Windows.Media;
 using AwesomeProperties;
 using AwesomeProperties.Attribute;
 using AwesomeProperties.Page.ViewModel;
+using Xceed.Wpf.Toolkit;
 
 namespace WpfApp1
 {
@@ -113,6 +114,31 @@ namespace WpfApp1
                 BindingOperations.SetBinding(comboBox, ComboBox.SelectedItemProperty, binding);
                 Property.Children.Add(comboBox);
             }
+
+            else if (property.Type == PropertyType.ColorField)
+            {
+                ColorPicker colorpicker = new ColorPicker();
+                Binding binding = new Binding("Test");
+                binding.Source = DataContext;
+                binding.Mode = BindingMode.TwoWay;
+                binding.UpdateSourceTrigger = UpdateSourceTrigger.Default;
+
+                colorpicker.Margin = new Thickness(0, 0, 0, 5);
+                colorpicker.HorizontalAlignment = HorizontalAlignment.Stretch;
+                colorpicker.Height = 25;
+                colorpicker.VerticalAlignment = VerticalAlignment.Center;
+                colorpicker.ShowStandardColors = false;
+                colorpicker.ColorMode = ColorMode.ColorCanvas;
+                colorpicker.DropDownBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5E5E5E"));
+                colorpicker.TabBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3D3D3D"));
+                colorpicker.TabForeground = new SolidColorBrush(Colors.White);
+                colorpicker.DropDownBorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF262626"));
+                colorpicker.DropDownBorderThickness = new Thickness(2);
+                Grid.SetColumn(colorpicker, 1);
+
+                BindingOperations.SetBinding(colorpicker, ColorPicker.SelectedColorProperty, binding);
+                Property.Children.Add(colorpicker);
+            }
         }
 
         public PropertyElement(PropertiesPanel panel,Type baseType, PropertyInfo target, Object data, PropertyField property)
@@ -209,6 +235,31 @@ namespace WpfApp1
                 Property.Children.Add(comboBox);
             }
 
+            else if (property.Type == PropertyType.ColorField)
+            {
+                ColorPicker colorpicker = new ColorPicker();
+                Binding binding = new Binding("Test");
+                binding.Source = DataContext;
+                binding.Mode = BindingMode.TwoWay;
+                binding.UpdateSourceTrigger = UpdateSourceTrigger.Default;
+
+                colorpicker.Margin = new Thickness(0, 0, 0, 5);
+                colorpicker.HorizontalAlignment = HorizontalAlignment.Stretch;
+                colorpicker.Height = 25;
+                colorpicker.VerticalAlignment = VerticalAlignment.Center;
+                colorpicker.ShowStandardColors = false;
+                colorpicker.ColorMode = ColorMode.ColorCanvas;
+                colorpicker.DropDownBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5E5E5E"));
+                colorpicker.TabBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3D3D3D"));
+                colorpicker.TabForeground = new SolidColorBrush(Colors.White);
+                colorpicker.DropDownBorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF262626"));
+                colorpicker.DropDownBorderThickness = new Thickness(2);
+
+                Grid.SetColumn(colorpicker, 1);
+
+                BindingOperations.SetBinding(colorpicker, ColorPicker.SelectedColorProperty, binding);
+                Property.Children.Add(colorpicker);
+            }
         }
     }
 }

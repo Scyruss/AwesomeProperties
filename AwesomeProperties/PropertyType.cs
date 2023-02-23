@@ -15,6 +15,7 @@ namespace AwesomeProperties
         Text,
         Int,
         CheckBox,
+        ColorField,
         Dropdown
     }
 }

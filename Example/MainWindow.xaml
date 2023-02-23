@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Example" xmlns:viewmodel="clr-namespace:Example.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
     <Window.DataContext>
         <viewmodel:CarViewModel/>
     </Window.DataContext>
@@ -27,7 +27,7 @@
         </ListView>
 
         <StackPanel x:Name="PropertiesPanel" Grid.Column="1">
-            
+            <xctk:ColorPicker ShowStandardColors="False" ColorMode="ColorCanvas" DropDownBackground="#FF5E5E5E" DropDownBorderThickness="2" TabBackground="#FF3D3D3D" TabForeground="White" DropDownBorderBrush="#FF262626"/>
         </StackPanel>
     </Grid>
 </ui:UiWindow>

@@ -36,14 +36,14 @@ namespace AwesomeProperties.Page.ViewModel
                     var p = childType.GetProperty(property.ChildrenName);
                     var childValue = target.GetValue(data);
 
-                    var convertedData = Convert.ChangeType(value, p.PropertyType);
+                    var convertedData = (p.PropertyType.Name.Contains(value.GetType().Name))?value:Convert.ChangeType(value, p.PropertyType);
 
                     p.SetValue(childValue, convertedData);
 
                 }
                 else
                 {
-                    var convertedData = Convert.ChangeType(value, target.PropertyType);
+                    var convertedData = (target.PropertyType.Name.Contains(value.GetType().Name)) ? value : Convert.ChangeType(value, target.PropertyType);
 
                     target.SetValue(data, convertedData);
                 }
