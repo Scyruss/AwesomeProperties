@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace AwesomeProperties.Attribute
 {
@@ -16,6 +17,7 @@ namespace AwesomeProperties.Attribute
         public string ChildrenControlTypeName { get; }
         public int Order { get; }
         public bool HasOrder { get => (Order == -1);  }
+        public UpdateSourceTrigger UpdateSourceTrigger { get; set; }
 
         /// <summary>
         /// Specify the property should be draw in the properties panel
@@ -24,12 +26,13 @@ namespace AwesomeProperties.Attribute
         /// <param name="childrenValueName">Name of the property who store the property value</param>
         /// <param name="childrenControlTypeName">Name of the property who store the property type</param>
         /// <param name="order">Specify the property order (By default he is order by declaration)</param>
-        public PropertyListField(string childrenName = "", string childrenValueName = "", string childrenControlTypeName = "", int order = -1)
+        public PropertyListField(string childrenName = "", string childrenValueName = "", string childrenControlTypeName = "", int order = -1, UpdateSourceTrigger sourceTrigger = UpdateSourceTrigger.PropertyChanged)
         {
             ChildrenName = childrenName;
             ChildrenValueName = childrenValueName;
             ChildrenControlTypeName = childrenControlTypeName;
             Order = order;
+            UpdateSourceTrigger = sourceTrigger;
         }
     }
 }

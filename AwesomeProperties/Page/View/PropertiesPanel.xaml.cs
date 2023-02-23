@@ -120,13 +120,14 @@ namespace WpfApp1
             {
                 if (attribute != null && attribute.AttributeType.Name.Contains(nameof(PropertyField)))
                 {
-                    if (attribute.ConstructorArguments.Count != 5) continue;
+                    if (attribute.ConstructorArguments.Count != 6) continue;
 
                     property.Add(new PropertyField((PropertyType)attribute.ConstructorArguments[0].Value,
                                                 (string)attribute.ConstructorArguments[1].Value,
                                                 (bool)attribute.ConstructorArguments[2].Value,
                                                 (string)attribute.ConstructorArguments[3].Value,
-                                                (int)attribute.ConstructorArguments[4].Value));
+                                                (int)attribute.ConstructorArguments[4].Value,
+                                                (UpdateSourceTrigger)attribute.ConstructorArguments[5].Value));
 
                 }
             }
@@ -142,12 +143,13 @@ namespace WpfApp1
             {
                 if (attribute != null && attribute.AttributeType.Name.Contains(nameof(PropertyListField)))
                 {
-                    if (attribute.ConstructorArguments.Count != 4) continue;
+                    if (attribute.ConstructorArguments.Count != 5) continue;
 
                     property.Add( new PropertyListField((string)attribute.ConstructorArguments[0].Value,
                                                 (string)attribute.ConstructorArguments[1].Value,
                                                 (string)attribute.ConstructorArguments[2].Value,
-                                                (int)attribute.ConstructorArguments[3].Value));
+                                                (int)attribute.ConstructorArguments[3].Value,
+                                                (UpdateSourceTrigger)attribute.ConstructorArguments[4].Value));
 
                 }
             }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace AwesomeProperties.Attribute
 {
@@ -17,6 +18,8 @@ namespace AwesomeProperties.Attribute
         public bool IsChildren { get; }
         public string ChildrenName { get; }
         public int Order { get; }
+        public UpdateSourceTrigger UpdateSourceTrigger { get; set; }
+
 
         /// <param name="childrenName">Name of the property who store the property header name</param>
         /// <param name="childrenValueName">Name of the property who store the property value</param>
@@ -31,13 +34,14 @@ namespace AwesomeProperties.Attribute
         /// <param name="isChildren">Set to true when the property is not a standard field</param>
         /// <param name="childrenName">Specify the name of the field to bind</param>
         /// <param name="order">Specify the property order (By default he is order by declaration)</param>
-        public PropertyField(PropertyType type, string displayName, bool isChildren = false, string childrenName = "", int order = -1)
+        public PropertyField(PropertyType type, string displayName, bool isChildren = false, string childrenName = "", int order = -1, UpdateSourceTrigger sourceTrigger = UpdateSourceTrigger.PropertyChanged)
         {
             Type = type;
             DisplayName = displayName;
             IsChildren = isChildren;
             ChildrenName = childrenName;
             Order = order;
+            UpdateSourceTrigger = sourceTrigger;
         }
     }
 }

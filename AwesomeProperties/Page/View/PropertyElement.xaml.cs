@@ -43,7 +43,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 textBlock.Margin = new Thickness(0, 0, 0, 5);
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -61,7 +61,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 textBlock.Margin = new Thickness(0, 0, 0, 5);
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -84,7 +84,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 ckeckBox.Margin = new Thickness(0, 0, 0, 5);
                 ckeckBox.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -102,7 +102,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 comboBox.Margin = new Thickness(0, 0, 0, 5);
                 comboBox.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -121,7 +121,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.Default;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 colorpicker.Margin = new Thickness(0, 0, 0, 5);
                 colorpicker.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -163,7 +163,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 textBlock.Margin = new Thickness(0, 0, 0, 5);
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -181,7 +181,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 textBlock.Margin = new Thickness(0, 0, 0, 5);
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -204,7 +204,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 ckeckBox.Margin = new Thickness(0, 0, 0, 5);
                 ckeckBox.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -222,7 +222,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 comboBox.Margin = new Thickness(0, 0, 0, 5);
                 comboBox.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -241,7 +241,7 @@ namespace WpfApp1
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
-                binding.UpdateSourceTrigger = UpdateSourceTrigger.Default;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
                 colorpicker.Margin = new Thickness(0, 0, 0, 5);
                 colorpicker.HorizontalAlignment = HorizontalAlignment.Stretch;
