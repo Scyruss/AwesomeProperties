@@ -59,7 +59,7 @@ namespace Example.ViewModel
         private UIElement properties;
         public UIElement Properties
         {
-            get => Properties;
+            get => properties;
             set
             {
                 properties = value;

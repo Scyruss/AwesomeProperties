@@ -1,5 +1,6 @@
 ﻿using AwesomeProperties;
 using AwesomeProperties.Attribute;
+using AwesomeProperties.Page.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,6 +38,26 @@ namespace WpfApp1
             DataContext = this;
 
             InitProperties(data);
+        }
+
+        public void RefreshProperties()
+        {
+            foreach (FrameworkElement i in PropertiesList.Children)
+            {
+                if (i.DataContext.GetType().Name.Contains("PropertyElementViewModel"))
+                {
+                    var dc = (PropertyElementViewModel)i.DataContext;
+
+                    dc.NotifyPropertyChanged(nameof(dc.Test));
+                }
+
+                if (i.DataContext.GetType().Name.Contains("PropertyListElementViewModel"))
+                {
+                    var dc = (PropertyListElementViewModel)i.DataContext;
+
+                    dc.NotifyPropertyChanged(nameof(dc.Test));
+                }
+            }
         }
 
         private void InitProperties(object data)

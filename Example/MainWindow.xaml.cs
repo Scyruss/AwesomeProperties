@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
+using WpfApp1;
 
 namespace Example
 {
@@ -32,6 +33,16 @@ namespace Example
 
             ViewModel.Cars.Add(new ElectricCar() { Name = "Tesla"});
             ViewModel.Cars.Add(new ThermalCar() { Name = "Opel"});
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in ViewModel.Cars)
+            {
+                item.Name = "test";
+            }
+
+            ((PropertiesPanel)ViewModel.Properties).RefreshProperties();
         }
     }
 }

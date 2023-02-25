@@ -29,5 +29,6 @@
         <StackPanel x:Name="PropertiesPanel" Grid.Column="1">
             <xctk:ColorPicker ShowStandardColors="False" ColorMode="ColorCanvas" DropDownBackground="#FF5E5E5E" DropDownBorderThickness="2" TabBackground="#FF3D3D3D" TabForeground="White" DropDownBorderBrush="#FF262626"/>
         </StackPanel>
+        <Button Content="Button" Margin="10,392,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </ui:UiWindow>
