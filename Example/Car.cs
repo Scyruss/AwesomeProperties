@@ -16,7 +16,7 @@ namespace Example
         [PropertyField(PropertyType.Text,"Name", order: 1, sourceTrigger: System.Windows.Data.UpdateSourceTrigger.LostFocus)]
         public string Name { get; set; }
 
-        [PropertyField(PropertyType.Text,"Description", order: 2)]
+        [PropertyField(PropertyType.FileBrowser,"Description", order: 2)]
         public string Description { get; set; }
         
         [PropertyField(PropertyType.Text,"Power (HP)", order: 3)]

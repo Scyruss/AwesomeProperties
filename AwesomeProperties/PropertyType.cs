@@ -16,6 +16,7 @@ namespace AwesomeProperties
         Int,
         CheckBox,
         ColorField,
-        Dropdown
+        Dropdown,
+        FileBrowser
     }
 }

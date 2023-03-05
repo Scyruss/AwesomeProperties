@@ -168,6 +168,45 @@ namespace WpfApp1
                 BindingOperations.SetBinding(colorpicker, ColorPicker.SelectedColorProperty, binding);
                 Property.Children.Add(colorpicker);
             }
+
+            if (property.Type == PropertyType.FileBrowser)
+            {
+                Grid fileBrowserGrid = new Grid();
+                fileBrowserGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
+                fileBrowserGrid.VerticalAlignment = VerticalAlignment.Stretch;
+
+                Button browse = new Button();
+                browse.VerticalAlignment = VerticalAlignment.Stretch;
+                browse.HorizontalAlignment = HorizontalAlignment.Right;
+                browse.Width = 40;
+                browse.Content = "...";
+                browse.Margin = new Thickness(0, 0, 0, 5);
+                TextBox textBlock = new TextBox();
+                Binding binding = new Binding("Test");
+                binding.Source = DataContext;
+                binding.Mode = BindingMode.TwoWay;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
+
+                textBlock.Margin = new Thickness(0, 0, 0, 5);
+                textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
+                textBlock.VerticalAlignment = VerticalAlignment.Stretch;
+
+                fileBrowserGrid.Children.Add(textBlock);
+                fileBrowserGrid.Children.Add(browse);
+
+                Grid.SetColumn(fileBrowserGrid, 1);
+
+                var b = BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+
+                textBlock.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
+                Property.Children.Add(fileBrowserGrid);
+            }
+
         }
 
         public PropertyElement(PropertiesPanel panel,Type baseType, PropertyInfo target, Object data, PropertyField property)
@@ -316,6 +355,45 @@ namespace WpfApp1
 
                 BindingOperations.SetBinding(colorpicker, ColorPicker.SelectedColorProperty, binding);
                 Property.Children.Add(colorpicker);
+            }
+
+            if (property.Type == PropertyType.FileBrowser)
+            {
+                Grid fileBrowserGrid = new Grid();
+                fileBrowserGrid.HorizontalAlignment= HorizontalAlignment.Stretch;
+                fileBrowserGrid.VerticalAlignment = VerticalAlignment.Stretch;
+
+                Button browse = new Button();
+                browse.VerticalAlignment= VerticalAlignment.Stretch;
+                browse.HorizontalAlignment= HorizontalAlignment.Right;
+                browse.Width = 40;
+                browse.Content = "...";
+                browse.Margin = new Thickness(0, 0, 0, 5);
+               
+                TextBox textBlock = new TextBox();
+                Binding binding = new Binding("Test");
+                binding.Source = DataContext;
+                binding.Mode = BindingMode.TwoWay;
+                binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
+
+                textBlock.Margin = new Thickness(0, 0, 0, 5);
+                textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
+                textBlock.VerticalAlignment = VerticalAlignment.Stretch;
+
+                fileBrowserGrid.Children.Add(textBlock);
+                fileBrowserGrid.Children.Add(browse);
+
+                Grid.SetColumn(fileBrowserGrid, 1);
+
+                var b = BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+
+                textBlock.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
+                Property.Children.Add(fileBrowserGrid);
             }
         }
     }
