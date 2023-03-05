@@ -49,9 +49,17 @@ namespace WpfApp1
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
                 textBlock.VerticalAlignment = VerticalAlignment.Stretch;
 
+
                 Grid.SetColumn(textBlock, 1);
 
-                BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+                var b = BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+
+                textBlock.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
                 Property.Children.Add(textBlock);
             }
 
@@ -74,26 +82,40 @@ namespace WpfApp1
 
                 Grid.SetColumn(textBlock, 1);
 
-                BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+                var b = BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+
+                textBlock.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
                 Property.Children.Add(textBlock);
             }
 
             else if (property.Type == PropertyType.CheckBox)
             {
-                CheckBox ckeckBox = new CheckBox();
+                CheckBox checkBox = new CheckBox();
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
                 binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
-                ckeckBox.Margin = new Thickness(0, 0, 0, 5);
-                ckeckBox.HorizontalAlignment = HorizontalAlignment.Stretch;
-                ckeckBox.VerticalAlignment = VerticalAlignment.Center;
+                checkBox.Margin = new Thickness(0, 0, 0, 5);
+                checkBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+                checkBox.VerticalAlignment = VerticalAlignment.Center;
 
-                Grid.SetColumn(ckeckBox, 1);
+                Grid.SetColumn(checkBox, 1);
 
-                BindingOperations.SetBinding(ckeckBox, CheckBox.IsCheckedProperty, binding);
-                Property.Children.Add(ckeckBox);
+                var b = BindingOperations.SetBinding(checkBox, CheckBox.IsCheckedProperty, binding);
+
+                checkBox.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
+                Property.Children.Add(checkBox);
             }
 
             else if (property.Type == PropertyType.Dropdown)
@@ -111,7 +133,14 @@ namespace WpfApp1
 
                 Grid.SetColumn(comboBox, 1);
 
-                BindingOperations.SetBinding(comboBox, ComboBox.SelectedItemProperty, binding);
+                var b = BindingOperations.SetBinding(comboBox, ComboBox.SelectedItemProperty, binding);
+
+                comboBox.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
                 Property.Children.Add(comboBox);
             }
 
@@ -171,7 +200,14 @@ namespace WpfApp1
 
                 Grid.SetColumn(textBlock,1);
 
-                BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+                var b = BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+
+                textBlock.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
                 Property.Children.Add(textBlock);
             }
 
@@ -194,26 +230,40 @@ namespace WpfApp1
 
                 Grid.SetColumn(textBlock, 1);
 
-                BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+                var b = BindingOperations.SetBinding(textBlock, TextBox.TextProperty, binding);
+
+                textBlock.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
                 Property.Children.Add(textBlock);
             }
 
             else if (property.Type == PropertyType.CheckBox)
             {
-                CheckBox ckeckBox = new CheckBox();
+                CheckBox checkBox = new CheckBox();
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
                 binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
-                ckeckBox.Margin = new Thickness(0, 0, 0, 5);
-                ckeckBox.HorizontalAlignment = HorizontalAlignment.Stretch;
-                ckeckBox.VerticalAlignment = VerticalAlignment.Center;
+                checkBox.Margin = new Thickness(0, 0, 0, 5);
+                checkBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+                checkBox.VerticalAlignment = VerticalAlignment.Center;
 
-                Grid.SetColumn(ckeckBox, 1);
+                Grid.SetColumn(checkBox, 1);
 
-                BindingOperations.SetBinding(ckeckBox, CheckBox.IsCheckedProperty, binding);
-                Property.Children.Add(ckeckBox);
+                var b = BindingOperations.SetBinding(checkBox, CheckBox.IsCheckedProperty, binding);
+
+                checkBox.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
+                Property.Children.Add(checkBox);
             }
 
             else if (property.Type == PropertyType.Dropdown)
@@ -231,7 +281,14 @@ namespace WpfApp1
 
                 Grid.SetColumn(comboBox, 1);
 
-                BindingOperations.SetBinding(comboBox, ComboBox.SelectedItemProperty, binding);
+                var b = BindingOperations.SetBinding(comboBox, ComboBox.SelectedItemProperty, binding);
+
+                comboBox.KeyUp += (c, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                        b.UpdateSource();
+                };
+
                 Property.Children.Add(comboBox);
             }
 
