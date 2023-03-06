@@ -9,6 +9,7 @@ using System.Windows.Media;
 using AwesomeProperties;
 using AwesomeProperties.Attribute;
 using AwesomeProperties.Page.ViewModel;
+using Microsoft.Win32;
 using Xceed.Wpf.Toolkit;
 
 namespace WpfApp1
@@ -181,13 +182,16 @@ namespace WpfApp1
                 browse.Width = 40;
                 browse.Content = "...";
                 browse.Margin = new Thickness(0, 0, 0, 5);
+
+
+                
                 TextBox textBlock = new TextBox();
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
                 binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
-                textBlock.Margin = new Thickness(0, 0, 0, 5);
+                textBlock.Margin = new Thickness(0, 0, 40, 5);
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
                 textBlock.VerticalAlignment = VerticalAlignment.Stretch;
 
@@ -204,9 +208,23 @@ namespace WpfApp1
                         b.UpdateSource();
                 };
 
+                browse.Click += (s, e) =>
+                {
+                    OpenFileDialog dialog = new OpenFileDialog();
+                    if ((bool)dialog.ShowDialog())
+                    {
+                        textBlock.Text = dialog.FileName;
+                    }
+                };
+
                 Property.Children.Add(fileBrowserGrid);
             }
 
+        }
+
+        private void Browse_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public PropertyElement(PropertiesPanel panel,Type baseType, PropertyInfo target, Object data, PropertyField property)
@@ -360,23 +378,25 @@ namespace WpfApp1
             if (property.Type == PropertyType.FileBrowser)
             {
                 Grid fileBrowserGrid = new Grid();
-                fileBrowserGrid.HorizontalAlignment= HorizontalAlignment.Stretch;
+                fileBrowserGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
                 fileBrowserGrid.VerticalAlignment = VerticalAlignment.Stretch;
 
                 Button browse = new Button();
-                browse.VerticalAlignment= VerticalAlignment.Stretch;
-                browse.HorizontalAlignment= HorizontalAlignment.Right;
+                browse.VerticalAlignment = VerticalAlignment.Stretch;
+                browse.HorizontalAlignment = HorizontalAlignment.Right;
                 browse.Width = 40;
                 browse.Content = "...";
                 browse.Margin = new Thickness(0, 0, 0, 5);
-               
+
+
+
                 TextBox textBlock = new TextBox();
                 Binding binding = new Binding("Test");
                 binding.Source = DataContext;
                 binding.Mode = BindingMode.TwoWay;
                 binding.UpdateSourceTrigger = property.UpdateSourceTrigger;
 
-                textBlock.Margin = new Thickness(0, 0, 0, 5);
+                textBlock.Margin = new Thickness(0, 0, 40, 5);
                 textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
                 textBlock.VerticalAlignment = VerticalAlignment.Stretch;
 
@@ -391,6 +411,15 @@ namespace WpfApp1
                 {
                     if (e.Key == Key.Enter)
                         b.UpdateSource();
+                };
+
+                browse.Click += (s, e) =>
+                {
+                    OpenFileDialog dialog = new OpenFileDialog();
+                    if ((bool)dialog.ShowDialog())
+                    {
+                        textBlock.Text = dialog.FileName;
+                    }
                 };
 
                 Property.Children.Add(fileBrowserGrid);
