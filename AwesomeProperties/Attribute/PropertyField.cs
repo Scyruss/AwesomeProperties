@@ -18,7 +18,8 @@ namespace AwesomeProperties.Attribute
         public bool IsChildren { get; }
         public string ChildrenName { get; }
         public int Order { get; }
-        public UpdateSourceTrigger UpdateSourceTrigger { get; set; }
+        public UpdateSourceTrigger UpdateSourceTrigger { get;}
+        public string GroupDisplay { get;}
 
 
         /// <param name="childrenName">Name of the property who store the property header name</param>
@@ -34,7 +35,7 @@ namespace AwesomeProperties.Attribute
         /// <param name="isChildren">Set to true when the property is not a standard field</param>
         /// <param name="childrenName">Specify the name of the field to bind</param>
         /// <param name="order">Specify the property order (By default he is order by declaration)</param>
-        public PropertyField(PropertyType type, string displayName, bool isChildren = false, string childrenName = "", int order = -1, UpdateSourceTrigger sourceTrigger = UpdateSourceTrigger.PropertyChanged)
+        public PropertyField(PropertyType type, string displayName, bool isChildren = false, string childrenName = "", int order = -1, UpdateSourceTrigger sourceTrigger = UpdateSourceTrigger.PropertyChanged, string groupDisplay = "General")
         {
             Type = type;
             DisplayName = displayName;
@@ -42,6 +43,7 @@ namespace AwesomeProperties.Attribute
             ChildrenName = childrenName;
             Order = order;
             UpdateSourceTrigger = sourceTrigger;
+            GroupDisplay = groupDisplay;
         }
     }
 }

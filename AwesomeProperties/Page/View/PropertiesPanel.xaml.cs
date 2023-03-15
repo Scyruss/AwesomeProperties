@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace WpfApp1
 {
@@ -25,13 +26,17 @@ namespace WpfApp1
     {
         public delegate void OnPropertieChangedEvent();
         public OnPropertieChangedEvent OnPropertieChanged;
+        public bool OrderByGroup { get; }
+
         /// <summary>
         /// Generate and show mark properties of a class
         /// </summary>
         /// <param name="data">Instance of a class to show</param>
-        public PropertiesPanel(object data)
+        public PropertiesPanel(object data,bool orderByGroup = false)
         {
             if (data == null) return;
+
+            OrderByGroup= orderByGroup;
 
             InitializeComponent();
 
@@ -64,10 +69,12 @@ namespace WpfApp1
         {
             //Create a list of Element for store fields (he will help for reorder fields)
             List<FrameworkElement> fields = new List<FrameworkElement>();
+            List<string> groups = new List<string>();
 
             var objectType = data.GetType();
 
             if (objectType == null) return;
+
 
             foreach (var item in objectType.GetProperties())
             {
@@ -81,6 +88,9 @@ namespace WpfApp1
                 {
                     foreach (var p in property)
                     {
+                        if (!groups.Contains(p.GroupDisplay))
+                            groups.Add(p.GroupDisplay);
+
                         if (p.Type == PropertyType.None) continue;
 
                         PropertyElement e = new PropertyElement(this, objectType, item, data, p);
@@ -96,8 +106,12 @@ namespace WpfApp1
                 {
                     foreach (var p in listProperty)
                     {
+
                         if (typeof(IList).IsAssignableFrom(item.PropertyType))
                         {
+                            if (!groups.Contains(p.GroupDisplay))
+                                groups.Add(p.GroupDisplay);
+
                             foreach (var indexData in item.GetValue(data) as IList)
                             {
                                 if (indexData == null) continue;
@@ -125,10 +139,39 @@ namespace WpfApp1
                 }
             }
 
-            var reordered = fields.OrderBy(o => ((int)(o.Tag) == -1)?9999: (int)(o.Tag));
+            var reordered = fields.OrderBy(o => ((int)(o.Tag) == -1) ? 9999 : (int)(o.Tag));
 
-            foreach (var i in reordered)
-                PropertiesList.Children.Add(i);
+            if (OrderByGroup)
+            {
+                Dictionary<string,CardExpander> cards = new Dictionary<string, CardExpander>();
+
+                foreach (var group in groups)
+                {
+                    CardExpander ex = new CardExpander();
+                    ex.Margin = new Thickness(0,0,0,10);
+                    ex.IsExpanded = true;
+                    ex.Header = group;
+                    ex.Content = new StackPanel();
+                    PropertiesList.Children.Add(ex);
+                    cards.Add(group,ex);
+                }
+
+                foreach (var i in reordered)
+                {
+                    var dt = (PropertyElementViewModel)i.DataContext;
+                    var group = dt.property.GroupDisplay;
+
+                    ((StackPanel)cards[group].Content).Children.Add(i);
+                }
+            }
+            else
+            {
+
+
+                foreach (var i in reordered)
+                    PropertiesList.Children.Add(i);
+
+            }
 
 
         }
@@ -141,14 +184,13 @@ namespace WpfApp1
             {
                 if (attribute != null && attribute.AttributeType.Name.Contains(nameof(PropertyField)))
                 {
-                    if (attribute.ConstructorArguments.Count != 6) continue;
-
                     property.Add(new PropertyField((PropertyType)attribute.ConstructorArguments[0].Value,
                                                 (string)attribute.ConstructorArguments[1].Value,
                                                 (bool)attribute.ConstructorArguments[2].Value,
                                                 (string)attribute.ConstructorArguments[3].Value,
                                                 (int)attribute.ConstructorArguments[4].Value,
-                                                (UpdateSourceTrigger)attribute.ConstructorArguments[5].Value));
+                                                (UpdateSourceTrigger)attribute.ConstructorArguments[5].Value,
+                                                (string)attribute.ConstructorArguments[6].Value));
 
                 }
             }
@@ -164,13 +206,12 @@ namespace WpfApp1
             {
                 if (attribute != null && attribute.AttributeType.Name.Contains(nameof(PropertyListField)))
                 {
-                    if (attribute.ConstructorArguments.Count != 5) continue;
-
-                    property.Add( new PropertyListField((string)attribute.ConstructorArguments[0].Value,
+                    property.Add(new PropertyListField((string)attribute.ConstructorArguments[0].Value,
                                                 (string)attribute.ConstructorArguments[1].Value,
                                                 (string)attribute.ConstructorArguments[2].Value,
                                                 (int)attribute.ConstructorArguments[3].Value,
-                                                (UpdateSourceTrigger)attribute.ConstructorArguments[4].Value));
+                                                (UpdateSourceTrigger)attribute.ConstructorArguments[4].Value,
+                                                (string)attribute.ConstructorArguments[5].Value));
 
                 }
             }

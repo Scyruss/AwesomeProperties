@@ -13,7 +13,7 @@ namespace Example
 {
     public class Car : IPropertyFieldValueChanged
     {
-        [PropertyField(PropertyType.Text,"Name", order: 1, sourceTrigger: System.Windows.Data.UpdateSourceTrigger.LostFocus)]
+        [PropertyField(PropertyType.Text,"Name", order: 1, sourceTrigger: System.Windows.Data.UpdateSourceTrigger.LostFocus,groupDisplay: "Car")]
         public string Name { get; set; }
 
         [PropertyField(PropertyType.FileBrowser,"Description", order: 2)]

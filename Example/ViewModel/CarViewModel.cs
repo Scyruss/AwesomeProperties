@@ -37,7 +37,7 @@ namespace Example.ViewModel
                 selectedCar = value;
                 NotifyPropertyChanged(nameof(SelectedCar));
 
-                var propertiesPanel = new PropertiesPanel(selectedCar);
+                var propertiesPanel = new PropertiesPanel(selectedCar,true);
                 propertiesPanel.OnPropertieChanged += OnPropertieChanged;
 
                 Properties = propertiesPanel;
